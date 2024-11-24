@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Office VBA Password Remover</title>
+</head>
+<body class="light-mode">
+    <div class="container">
+        <div class="card">
+            <h1 class="text-center">Office VBA Password Remover</h1>
+
+            {% if error %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endif %}
+
+            <form method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="file" class="form-label">Upload your Office document (Excel, Word, PowerPoint):</label>
+                    <input type="file" name="file" id="file" class="form-control" required accept=".doc,.docm,.xls,.xlsm,.ppt,.pptm" />
+                </div>
+                <button type="submit" class="btn btn-primary">Decrypt VBA</button>
+            </form>
+
+            <h2 class="mt-5">Instructions</h2>
+            <ol class="instructions">
+                <li>Upload your Office document.</li>
+                <li>Confirm the download of the new document.</li>
+                <li>Open the downloaded document and press <kbd>ALT + F11</kbd>. Confirm all error messages that might appear.</li>
+                <li>In the Macro editor window, <strong>do not expand the project</strong>, go to "Tools &gt; VBA Project Properties" instead.</li>
+                <li>On the "Protection" Tab, set a password of your choice and leave the checkbox selected.</li>
+                <li>Save the document and close your Office application entirely.</li>
+                <li>Open the saved document and use <kbd>ALT + F11</kbd> again to open the code editor.</li>
+                <li>In the Macro editor window, <strong>do not expand the project</strong>, go to "Tools &gt; VBA Project Properties" instead.</li>
+                <li>On the "Protection" Tab, clear the checkbox and password fields.</li>
+                <li>Save the document again.</li>
+                <li>The password is now removed and you can view or change the code as if it was never protected.</li>
+            </ol>
+        </div>
+
+        <!-- Dark Mode Toggle Button -->
+        <button class="mode-toggle btn btn-secondary"><i class="fas fa-moon"></i> Toggle Dark/Light Mode</button>
+    </div>
+
+    <script>
+        // Switch between light and dark modes
+        $(document).ready(function() {
+            $(".mode-toggle").click(function() {
+                $("body").toggleClass("dark-mode light-mode");
+            });
+        });
+    </script>
+</body>
+</html>
